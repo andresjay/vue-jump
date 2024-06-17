@@ -2,6 +2,9 @@ import camera from '../scene/camera'
 import { common } from '@/utils/common'
 
 class Background {
+  instance: any
+  frustumSize: any
+  
   constructor() {
     this.instance = null
     this.frustumSize = camera.frustumSize

@@ -24,5 +24,6 @@ export default class Text {
 		const scoreStr = score.toString();
 		// this.instance = new THREE.Mesh(new TextGeometry(scoreStr, { 'font': this.font, 'size': this.size, 'height': this.height }), this.material);
 		this.instance = new THREE.Mesh(new TextGeometry(scoreStr, this.size));
+		console.log({scoreStr})
 	}
 }

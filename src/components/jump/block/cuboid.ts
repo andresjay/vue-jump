@@ -4,6 +4,9 @@ import { BLOCKTYPE, COLOR } from '@/utils/common'
 // import img_stool from '@/static/images/stool.png'
 
 export default class CuboidBlock extends BaseBlock {
+  name: string
+  size: number
+
   constructor(x = 0, y = 0, z = 0, type, size) {
     super(BLOCKTYPE.CUBOID)
     this.name = 'block'

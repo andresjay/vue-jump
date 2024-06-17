@@ -6,6 +6,27 @@ import { customAnimation } from '@/utils/animation'
 import { common } from '@/utils/common'
 
 class Bottle {
+  x: any
+  y: any
+  z: any
+  instance: any
+  name: string
+  radius: number
+  depth: number
+  width: number
+  blockHeight: any
+  gravity: any
+  flyingTime: number
+  direction: number
+  axis: any
+  status: string
+  hero: any
+  head: any
+  body: any
+  velocity: { vx: number; vy: number }
+  scale: number
+  lastFrameTime: number
+  
   constructor() {
     const { x, y, z } = BOTTLECONFIG
     this.x = x
@@ -105,7 +126,7 @@ class Bottle {
   }
 
   show() {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
       customAnimation.to(this.instance.position, 1, {
         x: BOTTLECONFIG.x,
         y: BOTTLECONFIG.y + this.blockHeight / 2,

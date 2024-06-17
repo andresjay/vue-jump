@@ -2,6 +2,14 @@ import { BLOCKCONFIG, STATUS } from '@/utils/common'
 import { customAnimation } from '@/utils/animation'
 
 export default class BaseBlock {
+  type: any
+  width: number
+  height: number
+  status: any
+  scale: number
+  instance: any
+  y: number
+
   constructor(type) {
     this.type = type
     this.width = BLOCKCONFIG.width
@@ -18,6 +26,12 @@ export default class BaseBlock {
       z: this.z,
       ease: 'Bounce.easeOut'
     })
+  }
+  x(x: any, arg1: any, z: any) {
+    throw new Error('Method not implemented.')
+  }
+  z(x: any, arg1: any, z: any) {
+    throw new Error('Method not implemented.')
   }
 
   _shrink() {
