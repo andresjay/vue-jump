@@ -1,9 +1,16 @@
+import * as THREE from 'three'
 import { common } from '@/utils/common'
 import camera from './camera'
 import light from './light'
 import background from '../part/background'
 
 class Scene {
+  instance: any
+  renderer: THREE.WebGLRenderer
+  camera: any
+  light: any
+  background: any
+  currentScore: any
   constructor() {
     this.instance = null
   }

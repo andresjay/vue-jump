@@ -1,3 +1,4 @@
+import * as THREE from 'three'
 import { BLOCKCONFIG, STATUS } from '@/utils/common'
 import { customAnimation } from '@/utils/animation'
 

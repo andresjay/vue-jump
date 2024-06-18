@@ -1,14 +1,17 @@
+import * as THREE from 'three'
 import { common } from '@/utils/common'
 import { customAnimation } from '@/utils/animation'
 
 class Camera {
+  instance: any
+  frustumSize: number
   constructor() {
     this.instance = null
     this.frustumSize = 30
   }
   init() {
     const { aspect } = common
-    let frustumSize = this.frustumSize
+    const frustumSize = this.frustumSize
     this.instance = new THREE.OrthographicCamera(
       -frustumSize,
       frustumSize,
@@ -19,6 +22,9 @@ class Camera {
     )
     this.reset()
     this.instance.lookAt(this.target)
+  }
+  target(target: any) {
+    throw new Error('Method not implemented.')
   }
   reset() {
     //-10,10,10

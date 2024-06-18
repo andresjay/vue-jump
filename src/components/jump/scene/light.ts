@@ -1,6 +1,10 @@
+import * as THREE from 'three'
 import { customAnimation } from '@/utils/animation'
 
 class Light {
+  instances: {}
+  shadowLight: THREE.DirectionalLight
+  shadowTarget: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial, THREE.Object3DEventMap>
   constructor() {
     this.instances = {}
   }
@@ -12,7 +16,7 @@ class Light {
     // this.instances.shadowLightHelper = shadowLightHelper;
     shadowLight.position.set(10, 30, 20)
     shadowLight.castShadow = true
-    var basicMaterial = new THREE.MeshBasicMaterial({ color: 0xf5f5f5 })
+    const basicMaterial = new THREE.MeshBasicMaterial({ color: 0xf5f5f5 })
     this.shadowTarget = new THREE.Mesh(new THREE.PlaneGeometry(0.1, 0.1), basicMaterial)
     this.shadowTarget.visible = false
     this.shadowTarget.name = 'shadowTarget'

@@ -1,3 +1,4 @@
+import * as THREE from 'three'
 import audio_scale_intro from '@/static/audio/scale_intro.mp3'
 import audio_scale_loop from '@/static/audio/scale_loop.mp3'
 import audio_start from '@/static/audio/start.mp3'
@@ -31,6 +32,12 @@ const audioList = [
 ]
 
 class AudioManager {
+  scaleLoopBuffer: string
+  scaleIntroBuffer: string
+  audioComboBuffer: string
+  num: number
+  listener: THREE.AudioListener
+  sound: THREE.Audio<GainNode>
   constructor() {
     this.scaleLoopBuffer = ''
     this.scaleIntroBuffer = ''
@@ -49,10 +56,10 @@ class AudioManager {
         this.sound.play()
       }
     }
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve) => {
       audioList.map((item) => {
         const { key, source } = item
-        let loader = new THREE.AudioLoader()
+        const loader = new THREE.AudioLoader()
         loader.load(source, (buffer) => {
           this[`${key}Buffer`] = buffer
           this.num++
@@ -77,17 +84,26 @@ class AudioManager {
     this.sound.setLoop(false)
     this.sound.play()
   }
+  audioStartBuffer(audioStartBuffer: any) {
+    throw new Error('Method not implemented.')
+  }
   fallBlockPlay() {
     this.sound.stop()
     this.sound.setBuffer(this.audioFall2Buffer)
     this.sound.setLoop(false)
     this.sound.play()
   }
+  audioFall2Buffer(audioFall2Buffer: any) {
+    throw new Error('Method not implemented.')
+  }
   fallPlanePlay() {
     this.sound.stop()
     this.sound.setBuffer(this.audioFall1Buffer)
     this.sound.setLoop(false)
     this.sound.play()
+  }
+  audioFall1Buffer(audioFall1Buffer: any) {
+    throw new Error('Method not implemented.')
   }
 }
 

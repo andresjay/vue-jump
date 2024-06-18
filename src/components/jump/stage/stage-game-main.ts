@@ -1,3 +1,4 @@
+import * as THREE from 'three'
 import scene from '../scene'
 import CuboidBlock from '../block/cuboid'
 import CylinderBlock from '../block/cylinder'
@@ -18,6 +19,24 @@ const GAME_OVER_BOTH = 6
 const HIT_NEXT_BLOCK_CENTER = 7
 
 export default class StageGameMain {
+  callback: any
+  canvas: any
+  score: number
+  scene: any
+  ground: any
+  bottle: any
+  gravity: any
+  scoreText: ScoreText
+  state: string
+  currentBlock: CuboidBlock
+  nextBlock: CylinderBlock
+  targetPosition: any
+  touchStartTime: number
+  touchEndTime: number
+  hit: any
+  checkingHit: boolean
+  axis: THREE.Vector3
+  visible: any
   constructor(callback) {
     this.callback = callback
   }
@@ -241,18 +260,18 @@ export default class StageGameMain {
   getHitStatus(bottle, currentBlock, nextBlock, initY) {
     let flyingTime = (bottle.velocity.vy / this.gravity) * 2
     initY = initY || +bottle.instance.position.y.toFixed(2)
-    let destinationY = BLOCKCONFIG.height / 2
-    let differenceY = destinationY
-    let time = +(
+    const destinationY = BLOCKCONFIG.height / 2
+    const differenceY = destinationY
+    const time = +(
       (-bottle.velocity.vy +
         Math.sqrt(Math.pow(bottle.velocity.vy, 2) - 2 * this.gravity * differenceY)) /
       -this.gravity
     ).toFixed(2)
     flyingTime -= time
     flyingTime = +flyingTime.toFixed(2)
-    let destination = []
-    let bottlePosition = new THREE.Vector2(bottle.instance.position.x, bottle.instance.position.z)
-    let translate = new THREE.Vector2(this.axis.x, this.axis.z).setLength(
+    const destination = []
+    const bottlePosition = new THREE.Vector2(bottle.instance.position.x, bottle.instance.position.z)
+    const translate = new THREE.Vector2(this.axis.x, this.axis.z).setLength(
       bottle.velocity.vx * flyingTime
     )
     bottlePosition.add(translate)
@@ -260,10 +279,10 @@ export default class StageGameMain {
     destination.push(+bottlePosition.x.toFixed(2), +bottlePosition.y.toFixed(2))
     let result1, result2
     if (nextBlock) {
-      let nextDiff =
+      const nextDiff =
         Math.pow(destination[0] - nextBlock.instance.position.x, 2) +
         Math.pow(destination[1] - nextBlock.instance.position.z, 2)
-      let nextPolygon = nextBlock.getVertices()
+      const nextPolygon = nextBlock.getVertices()
       if (utils.pointInPolygon(destination, nextPolygon)) {
         if (Math.abs(nextDiff) < 5) {
           return HIT_NEXT_BLOCK_NORMAL
@@ -286,7 +305,7 @@ export default class StageGameMain {
       }
     }
 
-    let currentPolygon = currentBlock.getVertices()
+    const currentPolygon = currentBlock.getVertices()
     if (utils.pointInPolygon(destination, currentPolygon)) {
       return HIT_BLOCK_CURRENT
     } else if (

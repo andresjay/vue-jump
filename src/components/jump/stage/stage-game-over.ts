@@ -1,8 +1,18 @@
+import * as THREE from 'three'
 import scene from '../scene'
 import { common } from '@/utils/common'
 import img_replay from '@/static/images/replay.png'
 
 export default class StageGameOver {
+  callback: any
+  canvas: any
+  score: number
+  context: CanvasRenderingContext2D
+  replay_btn: HTMLImageElement
+  texture: THREE.Texture
+  material: THREE.MeshBasicMaterial
+  geometry: THREE.PlaneGeometry
+  mesh: THREE.Mesh<any, any, THREE.Object3DEventMap>
   constructor(callback) {
     this.callback = callback
     const { canvas } = common
@@ -65,11 +75,11 @@ export default class StageGameOver {
     this.callback.restartGame()
   }
 
-  addTouchEvent = (e) => {
+  addTouchEvent = () => {
     this.canvas.addEventListener('touchend', this.onTouchEnd.bind(this), true)
   }
 
-  removeTouchEvent = (e) => {
+  removeTouchEvent = () => {
     this.canvas.removeEventListener('touchend', this.onTouchEnd.bind(this), true)
   }
 }

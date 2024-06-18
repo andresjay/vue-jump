@@ -1,3 +1,4 @@
+import * as THREE from 'three'
 import BaseBlock from './base'
 import { BLOCKTYPE, COLOR } from '@/utils/common'
 

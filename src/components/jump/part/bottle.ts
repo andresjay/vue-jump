@@ -1,3 +1,4 @@
+import * as THREE from 'three'
 import { BLOCKCONFIG, STATUS, BOTTLECONFIG } from '@/utils/common'
 import img_head from '@/static/images/head.png'
 import img_bottom from '@/static/images/bottom.png'
@@ -26,7 +27,7 @@ class Bottle {
   velocity: { vx: number; vy: number }
   scale: number
   lastFrameTime: number
-  
+
   constructor() {
     const { x, y, z } = BOTTLECONFIG
     this.x = x
